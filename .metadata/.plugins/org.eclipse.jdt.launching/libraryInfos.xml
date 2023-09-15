@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<libraryInfos>
+    <libraryInfo home="/Library/Java/JavaVirtualMachines/jdk-18.0.1.1.jdk/Contents/Home" version="18.0.1.1"/>
+    <libraryInfo home="/Applications/SpringToolSuite4.app/Contents/Eclipse/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.macosx.x86_64_17.0.8.v20230831-1047/jre" version="17.0.8.1"/>
+    <libraryInfo home="/Users/dineshmarasini/Library/Java/JavaVirtualMachines/corretto-11.0.20/Contents/Home" version="11.0.20"/>
+    <libraryInfo home="/Applications/SpringToolSuite4.app/Contents/Eclipse/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.macosx.x86_64_17.0.8.v20230831-1047" version="17.0.8.1"/>
+    <libraryInfo home="/Library/Java/JavaVirtualMachines/jdk-20.jdk/Contents/Home" version="20.0.1"/>
+</libraryInfos>
