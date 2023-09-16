@@ -20,8 +20,8 @@ public class BootJpaDemoApplication {
 //		User user=new User();
 //	      
 //	     user.setName("Marasini");
-//	     user.setCity("Kirtipur");
-//	     user.setStatus("Java developer");
+//	     user.setCity("Gulmi");
+//	     user.setStatus("Python developer");
 //	     
 //	    
 //	     User user1=new User();
@@ -68,17 +68,31 @@ public class BootJpaDemoApplication {
 		
 		
 		//IMPLEMENTATION OF CUSTOM FINDER METHOD
-		List<User> users=userRepo.findByName("Marasini");
 		
-		users.forEach(e->System.out.println(e));
-		
-		List<User> nusers=userRepo.findByNameAndCity("TikiKumari", "Gulmi");
-		nusers.forEach(e->System.out.println(e));
+		     //By Name
+//		List<User> users=userRepo.findByName("Marasini");
+//		users.forEach(e->System.out.println(e));
+//		
+//		
+//		      //By Name and City
+//		List<User> nusers=userRepo.findByNameAndCity("TikiKumari", "Gulmi");
+//		nusers.forEach(e->System.out.println(e));
 		
 		 
-		
+		 //FOR JPQL QUERIES 
+	    List<User> allUser=userRepo.getAllUser();
 	    
+	   allUser.forEach(e->System.out.println(e));
+	   
+	   System.out.println("_________________________________________________________________________________________");
+	   
+	   List<User> userByName=userRepo.getUserByName("Marasini");
+	   userByName.forEach(e->System.out.println(e));
+	   System.out.println("__________________________________________________________________________________________");
 
+	   //FOR NATIVE QUERY
+	   
+	   userRepo.getusers().forEach(e->System.out.println(e));
 		
 		
 		
