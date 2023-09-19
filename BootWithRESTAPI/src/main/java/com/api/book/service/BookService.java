@@ -14,6 +14,7 @@ public class BookService {
 		list.add(new Book(1,"summar Love", "subin Bhattarai"));
 		list.add(new Book(2,"Priya Sufi", "subin Bhattarai"));
 		list.add(new Book(3,"Palpasa cafe","Narayan Wagle"));
+		list.add(new Book(4,"China haraeko Manche","Haribansha Acharya"));
 		
 	}
 	
@@ -28,6 +29,12 @@ public class BookService {
 	book=list.stream().filter(e->e.getId()==id).findFirst().get();
 	return book;
 		
+	}
+	
+	//adding the Book
+	public Book addBook(Book b) {
+		list.add(b);
+		return b;
 	}
 
 }
