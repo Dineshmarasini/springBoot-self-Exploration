@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+ 
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.book.entities.Book;
@@ -35,7 +35,7 @@ public class BookController {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}
 		 
-		return ResponseEntity.of(Optional.of(list));
+		return ResponseEntity.status(HttpStatus.CREATED).body(list);
 		
 	}
 	
@@ -80,7 +80,7 @@ public class BookController {
 		catch (Exception e) {
 			
 			e.printStackTrace();
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); 
 			
 		}
 	}
@@ -88,10 +88,16 @@ public class BookController {
 	
 	//UPDATE BOOK HANDLERS
 	@PutMapping("/books/{bookId}")
-	public Book updateBook(@RequestBody Book book, @PathVariable("bookId") int bookId) {
+	public ResponseEntity<Book> updateBook(@RequestBody Book book, @PathVariable("bookId") int bookId) {
 		
-		this.bookService.updateBook(book, bookId);
-		return book;
+		try {
+			this.bookService.updateBook(book, bookId);
+			return ResponseEntity.ok().body(book);
+		}
+		 catch(Exception e){
+			 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+			 
+		 }
 		
 	}
 		

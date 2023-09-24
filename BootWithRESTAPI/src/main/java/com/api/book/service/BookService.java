@@ -5,47 +5,53 @@ import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.api.book.dao.BookRepository;
 import com.api.book.entities.Book;
 @Component
 public class BookService {
-	private static List<Book> list=new ArrayList<>();
+	@Autowired
+	private BookRepository bookRepository;
+//	private static List<Book> list=new ArrayList<>();
 	
-	static {
-		list.add(new Book(1,"summar Love", "subin Bhattarai"));
-		list.add(new Book(2,"Priya Sufi", "subin Bhattarai"));
-		list.add(new Book(3,"Palpasa cafe","Narayan Wagle"));
-		list.add(new Book(4,"China haraeko Manche","Haribansha Acharya"));
-		
-	}
-	
+//	static {
+//		list.add(new Book(1,"summar Love", "subin Bhattarai"));
+//		list.add(new Book(2,"Priya Sufi", "subin Bhattarai"));
+//		list.add(new Book(3,"Palpasa cafe","Narayan Wagle"));
+//		list.add(new Book(4,"China haraeko Manche","Haribansha Acharya"));
+//		
+//	}
+	//GET ALL BOOKS
 	public List<Book> getAllBooks(){
+		
+		List<Book> list=(List<Book>)this.bookRepository.findAll();
 		return list;
 	}
 	
-	//get Books by id
+	//GET Books by id
 	
 	public Book getBookById(int id) {
 		Book book=null;
 		try {
-			book=list.stream().filter(e->e.getId()==id).findFirst().get();
+//			book=list.stream().filter(e->e.getId()==id).findFirst().get();
+			book=this.bookRepository.findById(id); 
 			
 		}
 		catch (Exception e) {
 			// TODO: handle exception
-			System.out.println("The Book is not found by such Id: ");
+			 e.printStackTrace();
 		}
 		 
-	
 	return book;
 		
 	}
 	
 	//adding the Book
 	public Book addBook(Book b) {
-		list.add(b);
-		return b;
+		 Book result=bookRepository.save(b);
+		return result;
 	}
 	
 	//delete book
@@ -53,7 +59,8 @@ public class BookService {
 	public void deleteBook(int bid) {
 		
 		 
-			list=list.stream().filter(e->e.getId()!=bid).collect(Collectors.toList());
+//			list=list.stream().filter(e->e.getId()!=bid).collect(Collectors.toList());
+		bookRepository.deleteById(bid);
 			
 		 
 		
@@ -63,16 +70,20 @@ public class BookService {
 	
 	public void updateBook(Book book,int bookId) {
 		
-		list=list.stream().map(e->{
-			if(e.getId()==bookId) {
-				e.setTitle(book.getTitle());
-				e.setAuthor(book.getAuthor());
-			}
-			
-			return e;
-			
-		}).collect(Collectors.toList());
+		book.setId(bookId);
 		
-	}
+		bookRepository.save(book);
+		
+//		list=list.stream().map(e->{
+//			if(e.getId()==bookId) {
+//				e.setTitle(book.getTitle());
+//				e.setAuthor(book.getAuthor());
+//			}
+//			
+//			return e;
+//			
+//		}).collect(Collectors.toList());
+//		
+    }
 
 }
