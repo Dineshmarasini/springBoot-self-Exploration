@@ -24,11 +24,20 @@ public class BookService {
 		return list;
 	}
 	
+	//get Books by id
+	
 	public Book getBookById(int id) {
 		Book book=null;
-		
+		try {
+			book=list.stream().filter(e->e.getId()==id).findFirst().get();
+			
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("The Book is not found by such Id: ");
+		}
 		 
-	book=list.stream().filter(e->e.getId()==id).findFirst().get();
+	
 	return book;
 		
 	}
@@ -42,7 +51,12 @@ public class BookService {
 	//delete book
 	
 	public void deleteBook(int bid) {
-		list=list.stream().filter(e->e.getId()!=bid).collect(Collectors.toList());
+		
+		 
+			list=list.stream().filter(e->e.getId()!=bid).collect(Collectors.toList());
+			
+		 
+		
 	}
 	
 	//update the book
