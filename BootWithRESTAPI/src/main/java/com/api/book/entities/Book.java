@@ -2,6 +2,8 @@ package com.api.book.entities;
 
 import org.hibernate.dialect.MySQL57Dialect;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,8 +21,11 @@ public class Book {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String title;
+	
 	@OneToOne(cascade = CascadeType.ALL)
+	@JsonManagedReference
 	private Author author;
+	
 	public Book(int id, String title, Author author) {
 		super();
 		this.id = id;
